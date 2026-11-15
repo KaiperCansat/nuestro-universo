@@ -280,7 +280,7 @@ export const FRASES = [
   { quien: "marti", fecha: "2026-06-20", texto: "Tu olor = hogar." },
   { quien: "marti", fecha: "2026-06-28", texto: "Piel clara y piel más oscura, ojos más claros y ojos más oscuros. Por eso somos literalmente la luna y el sol." },
   { quien: "marti", fecha: "2026-07-02", texto: "Me haces la chica más feliz de este universo. No entiendo cómo pude encontrarte." },
-  { quien: "marti", fecha: "2026-07-12", texto: "Te buscaría en todas mis vidas, sea el año que sea." },
+  { quien: "marti", fecha: "2026-11-15", texto: "Te buscaría en todas mis vidas, sea el año que sea." },
   { quien: "mati", fecha: "2026-07-28", texto: "Contigo me volví a sentir como el que alguna vez fui. Me sentí como ese que reía con cualquier cosa." },
   { quien: "mati", fecha: "2026-08-08", texto: "Me gusta decirte cosas bonitas, pero ninguna de todas esas palabras basta para decir cómo me haces sentir." },
   { quien: "marti", fecha: "2026-08-21", texto: "Siempre odiaré no habernos conocido antes, para poder pasar más tiempo juntos." },
