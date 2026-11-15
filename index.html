@@ -48,6 +48,7 @@
                 <li><a href="#frases">frases</a></li>
                 <li><a href="#canciones">canciones</a></li>
                 <li><a href="#fotos">fotos</a></li>
+                <li><a href="#resenas">reseñas</a></li>
               </ul>
             </nav>
             <a class="mast__cta" href="#final"><span aria-hidden="true">[ </span>el eclipse<span aria-hidden="true"> → ]</span></a>
@@ -225,6 +226,45 @@
     <ul class="wall" id="wall"></ul>
   </section>
 
+  <!-- ░░ 6b · LAS RESEÑAS ░░ -->
+  <section class="reviews" id="resenas" aria-labelledby="reviews-title">
+    <div class="reviews__band" aria-hidden="true"></div>
+    <div class="reviews__head">
+      <h2 class="reviews__title" id="reviews-title">
+        <span data-split="words" data-stagger="110" data-delay="0">las</span>
+        <span data-split="words" data-stagger="110" data-delay="130">reseñas<i class="dot">.</i></span>
+      </h2>
+      <div class="reviews__score" data-rise="250">
+        <p class="reviews__avg"><span id="revAvg">5,0</span> <span class="reviews__avg-stars" id="revAvgStars" aria-hidden="true">★★★★★</span></p>
+        <p class="reviews__count" id="revCount"></p>
+      </div>
+      <p class="reviews__intro" data-split="words" data-stagger="30" data-delay="350">Lo que opina quien pasa por aquí. Empezando por ella.</p>
+    </div>
+    <div class="reviews__grid">
+      <form class="review-form" id="reviewForm" novalidate data-rise="200">
+        <h3 class="review-form__title">deja tu reseña</h3>
+        <label class="review-form__label" for="revName">tu nombre</label>
+        <input class="review-form__input" id="revName" name="nombre" type="text" maxlength="40" autocomplete="nickname" required>
+        <fieldset class="stars-input">
+          <legend class="review-form__label">tus estrellas</legend>
+          <div class="stars-input__row">
+            <input type="radio" name="estrellas" id="rs5" value="5" checked><label for="rs5" title="5 estrellas"><span class="sr">5 estrellas</span>★</label>
+            <input type="radio" name="estrellas" id="rs4" value="4"><label for="rs4" title="4 estrellas"><span class="sr">4 estrellas</span>★</label>
+            <input type="radio" name="estrellas" id="rs3" value="3"><label for="rs3" title="3 estrellas"><span class="sr">3 estrellas</span>★</label>
+            <input type="radio" name="estrellas" id="rs2" value="2"><label for="rs2" title="2 estrellas"><span class="sr">2 estrellas</span>★</label>
+            <input type="radio" name="estrellas" id="rs1" value="1"><label for="rs1" title="1 estrella"><span class="sr">1 estrella</span>★</label>
+          </div>
+        </fieldset>
+        <label class="review-form__label" for="revText">tu reseña</label>
+        <textarea class="review-form__input review-form__text" id="revText" name="texto" maxlength="500" rows="4" required></textarea>
+        <input class="hp" type="text" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <button class="review-form__send" type="submit">publicar reseña <span aria-hidden="true">★</span></button>
+        <p class="review-form__msg" id="revMsg" role="status" aria-live="polite"></p>
+      </form>
+      <ol class="reviews__list" id="reviewList"></ol>
+    </div>
+  </section>
+
   <!-- ░░ 7 · FINAL ░░ -->
   <section class="finale" id="final" aria-labelledby="finale-title">
     <div class="finale__panel">
@@ -242,6 +282,7 @@
         <a href="#frases" data-split="letters" data-stagger="22" data-delay="500">frases</a>
         <a href="#canciones" data-split="letters" data-stagger="22" data-delay="580">canciones</a>
         <a href="#fotos" data-split="letters" data-stagger="22" data-delay="660">fotos</a>
+        <a href="#resenas" data-split="letters" data-stagger="22" data-delay="740">reseñas</a>
       </nav>
       <canvas class="finale__figure" id="finaleFig" aria-hidden="true"></canvas>
       <p class="finale__copy" data-rise="640">© 2026 · hecho a mano por Matías, para Marti</p>
@@ -264,7 +305,7 @@
       <button class="sheet__close" id="sheetClose" aria-label="Cerrar menú"><span></span><span></span></button>
     </div>
     <nav class="sheet__nav">
-      <a href="#numeros">universo</a><a href="#historia">historia</a><a href="#frases">frases</a><a href="#canciones">canciones</a><a href="#fotos">fotos</a><a href="#final">el eclipse</a>
+      <a href="#numeros">universo</a><a href="#historia">historia</a><a href="#frases">frases</a><a href="#canciones">canciones</a><a href="#fotos">fotos</a><a href="#resenas">reseñas</a><a href="#final">el eclipse</a>
     </nav>
   </div>
 

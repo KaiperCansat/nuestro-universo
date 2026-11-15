@@ -215,18 +215,13 @@ export const HISTORIA = [
     texto: "«Y aunque transitaban por el mismo cielo, no lo consiguieron. Hasta que una tarde, ellos coincidieron, formando así, el eclipse perfecto.» — el poema que te escribí. Ese mismo día ya tenías también tu canción, y te dije que eras «la mejor novia del mundo».",
   },
   {
-    fecha: "2026-08-29", frame: "lado", lado: "izquierda", arte: "estrellas",
-    alt: "Una constelación de estrellas",
-    nota: "«en otra vida sí estuvimos juntos hasta el final»",
-  },
-  {
     fecha: "2026-09-09", frame: "centro", arte: "eclipse", sep: 1.05,
     alt: "El sol saliendo detrás de la luna",
     titulo: "A las 7 de la mañana.",
     texto: "Aparecí a las 7 de la mañana solo para estar contigo antes de clase. Ese día quedó dicho: el 11 de cada mes, siempre especial.",
   },
   {
-    fecha: "2026-11-15", frame: "lado", lado: "derecha", foto: "fotos/m-2026-09-12-141217.jpg",
+    fecha: "2026-09-12", frame: "lado", lado: "derecha", foto: "fotos/m-2026-09-12-144736.jpg", posicion: "center 30%",
     alt: "Martina",
     nota: "«eres como mi lugar seguro, mi hogar»",
   },
@@ -291,6 +286,17 @@ export const HISTORIA = [
     titulo: "Esta página.",
     texto: "Me quedé hasta las 4:30 terminándola. Te pedí que la vieras en el ordenador, con calma, y me dijiste que te daban nervios. Esto es lo que estaba haciendo.",
   },
+  {
+    fecha: "2026-11-15", frame: "lado", lado: "izquierda", arte: "musica",
+    alt: "Un pequeño sol entre notas musicales doradas y plateadas",
+    nota: "la viste entera y acabamos cantando «Niño», de Milo J, a dos voces",
+  },
+  {
+    fecha: "2026-11-15", frame: "centro", arte: "continuara",
+    alt: "Un camino de puntos: los dorados ya vividos y los que faltan, que se pierden entre las estrellas",
+    titulo: "«Odio los finales».",
+    texto: "«¿Por qué todo tiene que acabarse?», me dijiste al llegar aquí abajo. Por eso esta página no se acaba: la seguiré llenando con nuevos recuerdos, nuevas partes. Te amo.",
+  },
 ];
 
 // Las frases bonitas, tal cual las escribimos en el chat.
@@ -344,6 +350,8 @@ export const FRASES = [
   { quien: "mati", fecha: "2026-11-14", texto: "Me encanta pasar tiempo contigo. Por mí, que me ocupes las 24/7, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday, every hour, every minute." },
   { quien: "marti", fecha: "2026-11-15", texto: "Descansa. Que los ángeles te cubran la cabeza de lindas flores que aporten bonitos sueños.", grande: true },
   { quien: "mati", fecha: "2026-11-15", texto: "Mi sol eres tú." },
+  { quien: "marti", fecha: "2026-11-15", texto: "Me gusta demasiado. Muchísimas gracias." },
+  { quien: "mati", fecha: "2026-11-15", texto: "Sé que ya no suelo decirlo, pero te amo." },
 ];
 
 // Las fotos del muro, por orden. texto = lo que se escribe a mano debajo.
@@ -388,7 +396,7 @@ export const FOTOS = [
   { src: "fotos/m-2026-08-20-155508.jpg", fecha: "2026-08-20", texto: "" },
   { src: "fotos/m-2026-08-20-171932.jpg", fecha: "2026-08-20", texto: "yo" },
   { src: "fotos/2026-08-20-marti-collar-m.jpg", fecha: "2026-08-20", texto: "" },
-  { src: "fotos/2026-08-20-sobre.jpg", fecha: "2026-08-20", texto: "un sobre con corazones" },
+  { src: "fotos/2026-08-20-sobre.jpg", fecha: "2026-08-20", texto: "un sobre con cerezas" },
   { src: "fotos/2026-08-20-noche.jpg", fecha: "2026-08-20", texto: "otra vez nosotros" },
   { src: "fotos/2026-08-21-crochet.jpg", fecha: "2026-08-21", texto: "un poyoyoi de crochet" },
   { src: "fotos/2026-08-21-mejillas.jpg", fecha: "2026-08-21", texto: "mejilla con mejilla" },
@@ -397,12 +405,12 @@ export const FOTOS = [
   { src: "fotos/2026-08-24-marti-bosque.jpg", fecha: "2026-08-24", texto: "entre pinos" },
   { src: "fotos/m-2026-08-24-222413.jpg", fecha: "2026-08-24", texto: "" },
   { src: "fotos/2026-08-29-playlist.jpg", fecha: "2026-08-29", texto: "TE AMO MARTINA ♡" },
-  { src: "fotos/m-2026-09-12-141217.jpg", fecha: "2026-11-15", texto: "" },
   { src: "fotos/m-2026-09-12-144736.jpg", fecha: "2026-09-12", texto: "" },
   { src: "fotos/m-2026-09-12-165806.jpg", fecha: "2026-09-12", texto: "" },
   { src: "fotos/m-2026-09-12-170107.jpg", fecha: "2026-09-12", texto: "" },
   { src: "fotos/m-2026-09-12-170443.jpg", fecha: "2026-09-12", texto: "" },
   { src: "fotos/m-2026-09-12-225518.jpg", fecha: "2026-09-12", texto: "" },
+  { src: "fotos/m-2026-09-12-141217.jpg", fecha: "2026-11-15", texto: "🫰" },
 ];
 
 // Las canciones. La playlist que te hice (se reproduce dentro de la web) y las que nos dedicamos.
@@ -438,3 +446,23 @@ export const PORTADA = [
   { src: "fotos/2026-08-21-mejillas.jpg", fecha: "2026-08-21", texto: "mi sol" },
   { src: "fotos/2026-08-20-noche.jpg", fecha: "2026-08-20", texto: "tu luna" },
 ];
+
+// Las reseñas. Las primeras son de Martina, tal cual las escribió el día que vio la página.
+// respuesta = lo que le contesté (opcional).
+export const RESENAS = [
+  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "Me gusta demasiado. Muchísimas gracias.", respuesta: "Gracias a ti, por estar a mi lado." },
+  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "Me están dando ganas de llorar.", respuesta: "No llores." },
+  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "La hora dorada. Esa foto me define." },
+  { nombre: "Martina", fecha: "2026-11-15", estrellas: 4, texto: "Yo te dediqué el álbum entero de Damiano. Y tú no. Buum." },
+  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "No eran corazones, tonto. ¡Eran cerezas!", respuesta: "Real. Las 4 a. m. me afectaron. (Ya está arreglado)." },
+  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "Odio los finales. ¿Por qué todo tiene que acabarse?", respuesta: "Tranquila, lo seguiré actualizando con el tiempo. Nuevos recuerdos, nuevas partes." },
+  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "Love you so much.", respuesta: "I love you 3 thousand." },
+];
+
+// Dónde se guardan las reseñas que escribe la gente (Supabase, gratis).
+// Mientras esté vacío, cada reseña se guarda solo en el móvil u ordenador de quien la escribe.
+// Pasos en el README: «Reseñas compartidas».
+export const RESENAS_GUARDADO = {
+  url: "https://gxckeronpddxmaslsmsy.supabase.co",
+  clave: "sb_publishable_pySEs5hhUM-wBIalPObpDg_V0xW05HQ",
+};

@@ -3,7 +3,7 @@
 //  Sin frameworks: un solo bucle de animación, Lenis para el
 //  scroll suave y todo lo demás hecho a mano.
 // ─────────────────────────────────────────────────────────────
-import { PAREJA, NUMEROS, ESTRELLAS, HISTORIA, FRASES, FOTOS, PORTADA, PLAYLIST, CANCIONES } from "./datos.js";
+import { PAREJA, NUMEROS, ESTRELLAS, HISTORIA, FRASES, FOTOS, PORTADA, PLAYLIST, CANCIONES, RESENAS, RESENAS_GUARDADO } from "./datos.js";
 import { preparar, dibujar, lienzo, estrellas, arteSVG } from "./cielo.js";
 
 history.scrollRestoration = "manual";
@@ -296,6 +296,112 @@ const tracks = $("#tracks");
     });
   }
   tracks.append(li);
+});
+
+// Las reseñas: las de Martina (fijas) y las que deja la gente.
+// Con RESENAS_GUARDADO rellenado se comparten (Supabase); si no, se quedan en el dispositivo.
+const revList = $("#reviewList");
+const revForm = $("#reviewForm");
+const revMsg = $("#revMsg");
+const REV_LOCAL = "nuestro-universo:resenas";
+const revRemoto = Boolean(RESENAS_GUARDADO.url && RESENAS_GUARDADO.clave);
+const todasResenas = [];
+const estrellasTxt = (n) => "★".repeat(n) + "☆".repeat(5 - n);
+const el = (tag, cls, txt) => { const e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; };
+function tarjetaResena(r, { fija = false, delante = false } = {}) {
+  const li = el("li", `review${fija ? " review--marti" : ""}`);
+  if (fija) li.dataset.rise = "0";
+  const head = el("div", "review__head");
+  head.append(el("span", "review__avatar", (r.nombre.trim()[0] || "?").toUpperCase()));
+  const who = el("div", "review__who");
+  const name = el("p", "review__name", r.nombre);
+  if (fija) name.append(el("span", "review__badge", "verificada ☀"));
+  const meta = el("p", "review__meta");
+  const st = el("span", "review__stars", estrellasTxt(r.estrellas));
+  st.setAttribute("role", "img");
+  st.setAttribute("aria-label", `${r.estrellas} de 5 estrellas`);
+  const t = el("time", null, corta(r.fecha));
+  t.dateTime = r.fecha;
+  meta.append(st, " · ", t);
+  who.append(name, meta);
+  head.append(who);
+  li.append(head, el("p", "review__text", r.texto));
+  if (r.respuesta) {
+    const rep = el("div", "review__reply");
+    rep.append(el("p", "review__reply-by", `respuesta de ${PAREJA.el}`), el("p", "review__reply-text", r.respuesta));
+    li.append(rep);
+  }
+  todasResenas.push(r);
+  if (delante) revList.insertBefore(li, revList.children[RESENAS.length] || null);
+  else revList.append(li);
+  pintarNota();
+  return li;
+}
+function pintarNota() {
+  const n = todasResenas.length;
+  const media = n ? todasResenas.reduce((a, r) => a + r.estrellas, 0) / n : 5;
+  $("#revAvg").textContent = media.toFixed(1).replace(".", ",");
+  $("#revAvgStars").textContent = estrellasTxt(Math.round(media));
+  $("#revCount").textContent = `${n} ${n === 1 ? "reseña" : "reseñas"}`;
+}
+RESENAS.forEach((r) => tarjetaResena(r, { fija: true }));
+const leerLocales = () => { try { return JSON.parse(localStorage.getItem(REV_LOCAL) || "[]"); } catch { return []; } };
+const cabeceras = () => {
+  const h = { apikey: RESENAS_GUARDADO.clave, "Content-Type": "application/json" };
+  if (RESENAS_GUARDADO.clave.startsWith("eyJ")) h.Authorization = `Bearer ${RESENAS_GUARDADO.clave}`;
+  return h;
+};
+const deFila = (f) => ({ nombre: f.nombre, estrellas: f.estrellas, texto: f.texto, fecha: String(f.creado || f.fecha).slice(0, 10) });
+if (revRemoto) {
+  fetch(`${RESENAS_GUARDADO.url}/rest/v1/resenas?select=nombre,estrellas,texto,creado&order=creado.desc&limit=300`, { headers: cabeceras() })
+    .then((r) => (r.ok ? r.json() : []))
+    .then((filas) => { filas.forEach((f) => tarjetaResena(deFila(f))); lenis?.resize?.(); })
+    .catch(() => {});
+} else {
+  leerLocales().reverse().forEach((r) => tarjetaResena(r));
+}
+revForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const datos = new FormData(revForm);
+  if (datos.get("web")) return; // trampa para robots
+  const nombre = String(datos.get("nombre") || "").trim().slice(0, 40);
+  const texto = String(datos.get("texto") || "").trim().slice(0, 500);
+  const estrellas = Math.min(5, Math.max(1, Number(datos.get("estrellas")) || 5));
+  if (!nombre || !texto) {
+    revMsg.textContent = !nombre ? "Falta tu nombre." : "Falta tu reseña.";
+    revMsg.className = "review-form__msg is-error";
+    (!nombre ? $("#revName") : $("#revText")).focus();
+    return;
+  }
+  const boton = $(".review-form__send", revForm);
+  boton.disabled = true;
+  revMsg.className = "review-form__msg";
+  revMsg.textContent = "Publicando…";
+  const hoyIso = new Date().toISOString().slice(0, 10);
+  let nueva = { nombre, estrellas, texto, fecha: hoyIso };
+  try {
+    if (revRemoto) {
+      const res = await fetch(`${RESENAS_GUARDADO.url}/rest/v1/resenas`, { method: "POST", headers: { ...cabeceras(), Prefer: "return=representation" }, body: JSON.stringify({ nombre, estrellas, texto }) });
+      if (!res.ok) throw new Error(String(res.status));
+      const [fila] = await res.json();
+      if (fila) nueva = deFila(fila);
+      revMsg.textContent = "¡Gracias! Tu reseña ya está publicada.";
+    } else {
+      const locales = leerLocales();
+      locales.push(nueva);
+      try { localStorage.setItem(REV_LOCAL, JSON.stringify(locales)); } catch {}
+      revMsg.textContent = "¡Gracias! Tu reseña se ha guardado en este dispositivo.";
+    }
+    const li = tarjetaResena(nueva, { delante: true });
+    li.classList.add("is-new");
+    revForm.reset();
+    lenis?.resize?.();
+  } catch {
+    revMsg.textContent = "No se ha podido publicar. Prueba otra vez en un momento.";
+    revMsg.className = "review-form__msg is-error";
+  } finally {
+    boton.disabled = false;
+  }
 });
 
 // El muro

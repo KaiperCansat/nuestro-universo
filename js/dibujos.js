@@ -272,4 +272,25 @@ export const DIBUJOS = {
     <text x="600" y="130" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="34" fill="${G}">04:30</text>
     <circle cx="600" cy="74" r="18" fill="${M}"/><circle cx="610" cy="66" r="16" fill="#0b1236"/>
     ${hand(355, 392, "para verla en el ordenador, con calma", 30, C)}`),
+  musica: () => {
+    const rayos = Array.from({ length: 12 }, (_, i) => { const a = (i / 12) * Math.PI * 2; return `<path d="M${(355 + Math.cos(a) * 46).toFixed(1)} ${(205 + Math.sin(a) * 46).toFixed(1)} L${(355 + Math.cos(a) * 70).toFixed(1)} ${(205 + Math.sin(a) * 70).toFixed(1)}" stroke="${G}" stroke-width="5"/>`; }).join("");
+    const nota = (x, y, c) => `<ellipse cx="${x}" cy="${y}" rx="20" ry="14" transform="rotate(-20 ${x} ${y})" fill="${c}"/><path d="M${x + 18} ${y - 4} V${y - 110}" stroke="${c}" stroke-width="5"/>`;
+    return svg(`
+      ${[150, 170, 190, 210, 230].map((y) => `<path d="M90 ${y + 40} H620" stroke="${M}" stroke-width="1.5" opacity="0.35"/>`).join("")}
+      ${rayos}<circle cx="355" cy="205" r="34" fill="${A}"/>
+      ${nota(170, 300, A)}${nota(225, 285, A)}<path d="M188 190 L243 175" stroke="${A}" stroke-width="9"/>
+      ${nota(480, 290, M)}${nota(535, 275, M)}<path d="M498 180 L553 165" stroke="${M}" stroke-width="9"/>
+      ${hand(355, 405, "a dos voces", 36, C)}`);
+  },
+
+  continuara: () => {
+    const pts = [[90, 360], [160, 330], [225, 300], [285, 262], [340, 230], [395, 200], [450, 168], [505, 140], [560, 116], [615, 96]];
+    const hoy = 4;
+    return svg(`
+      <path d="M${pts.map((p) => p.join(" ")).join(" L")}" stroke="${M}" stroke-width="2" stroke-dasharray="3 8"/>
+      ${pts.map(([x, y], i) => i <= hoy ? `<circle cx="${x}" cy="${y}" r="9" fill="${G}"/>` : `<circle cx="${x}" cy="${y}" r="${9 - (i - hoy)}" stroke="${C}" stroke-width="2" opacity="${(1 - (i - hoy) * 0.15).toFixed(2)}"/>`).join("")}
+      <circle cx="322" cy="190" r="22" fill="${A}"/><circle cx="360" cy="186" r="20" fill="${M}"/><circle cx="368" cy="180" r="17" fill="#0b1236"/>
+      ${sparkles([[600, 50, 7], [660, 150, 5], [540, 60, 4], [140, 120, 4]])}
+      ${hand(355, 412, "continuará…", 42, G)}`);
+  },
 };
