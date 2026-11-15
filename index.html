@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Nuestro universo — M &amp; M</title>
+  <meta name="description" content="Tú, mi sol. Yo, tu luna.">
+  <meta name="theme-color" content="#fbf7ee">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='38' cy='32' r='18' fill='%23f6a21a'/%3E%3Ccircle cx='26' cy='32' r='18' fill='%230b1236'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500;1,700&family=Courier+Prime:wght@400;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+  { "imports": { "lenis": "https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs" } }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#historia">Saltar al contenido</a>
+
+  <!-- ░░ VELO DE CARGA: un eclipse que se completa ░░ -->
+  <div class="veil" id="veil" role="status" aria-label="Cargando nuestro universo">
+    <div class="veil__inner" id="veilInner">
+      <canvas class="veil__eclipse" id="veilSky" aria-hidden="true"></canvas>
+      <p class="veil__name">marti &amp; mati</p>
+    </div>
+    <div class="veil__meter" aria-hidden="true"><span id="veilMeter"></span></div>
+  </div>
+
+  <main id="stack" class="stack">
+
+    <!-- ░░ 1 · PORTADA ░░ -->
+    <div class="stack__layer" data-pin>
+      <div class="stack__inner">
+        <section class="hero" id="inicio" data-hero aria-labelledby="hero-title">
+          <canvas class="contours" data-contours="hero" aria-hidden="true"></canvas>
+          <canvas class="sparkles" id="sparkles" aria-hidden="true"></canvas>
+
+          <header class="mast" data-rise="0">
+            <a class="mast__logo" href="#inicio" aria-label="Marti y Mati, inicio">
+              <span class="mast__m">M</span><span class="mast__dot" aria-hidden="true"></span><span class="mast__m">M</span>
+            </a>
+            <nav class="mast__nav" aria-label="Principal">
+              <ul>
+                <li><a href="#numeros">universo</a></li>
+                <li><a href="#historia">historia</a></li>
+                <li><a href="#frases">frases</a></li>
+                <li><a href="#canciones">canciones</a></li>
+                <li><a href="#fotos">fotos</a></li>
+              </ul>
+            </nav>
+            <a class="mast__cta" href="#final"><span aria-hidden="true">[ </span>el eclipse<span aria-hidden="true"> → ]</span></a>
+            <button class="mast__burger" id="burger" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span></button>
+          </header>
+
+          <div class="hero__body">
+            <div class="hero__id">
+              <p class="hero__eyebrow" data-fade="180">nº 001 · desde el <time datetime="2026-03-27">27.03.2026</time></p>
+              <h1 class="hero__title" id="hero-title" data-split="words" data-stagger="110" data-delay="180">Martina &amp; Matías</h1>
+              <ul class="hero__meta">
+                <li data-rise="440"><span class="ico ico--sun" aria-hidden="true"></span>tú, mi sol</li>
+                <li data-rise="570"><span class="ico ico--moon" aria-hidden="true"></span>yo, tu luna</li>
+                <li data-rise="700"><span class="ico ico--heart" aria-hidden="true">♡</span>novios desde el <time datetime="2026-05-11">11.05.2026</time></li>
+              </ul>
+            </div>
+
+            <div class="hero__stage" id="stage" aria-hidden="true">
+              <canvas class="eclipse" id="eclipse"></canvas>
+              <div class="fan" id="fan"></div>
+              <p class="hero__hint" id="hint">mueve la luna hasta el sol</p>
+            </div>
+
+            <div class="hero__panels" data-rise="900">
+              <div class="panel">
+                <span class="corner corner--tl"></span><span class="corner corner--tr"></span><span class="corner corner--bl"></span><span class="corner corner--br"></span>
+                <p class="panel__eyebrow">nuestro próximo 11</p>
+                <dl class="panel__list">
+                  <dt id="next11Label">—</dt>
+                  <dd id="next11Days">—</dd>
+                  <dd><time id="next11Date">—</time></dd>
+                </dl>
+                <div class="phase" id="phase" aria-hidden="true"><span></span></div>
+              </div>
+              <div class="panel">
+                <span class="corner corner--tl"></span><span class="corner corner--tr"></span><span class="corner corner--bl"></span><span class="corner corner--br"></span>
+                <p class="panel__eyebrow">contando</p>
+                <dl class="panel__stats">
+                  <div><dt>días</dt><dd data-count="dias">0</dd></div>
+                  <div><dt>novios</dt><dd data-count="novios">0</dd></div>
+                  <div><dt>meses</dt><dd data-count="meses">0</dd></div>
+                </dl>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero__foot" data-rise="1500">
+            <a class="song" id="song" href="#" target="_blank" rel="noopener">
+              <span class="song__disc" aria-hidden="true"></span>
+              <span class="song__text"><b id="songTitle">nuestra canción</b><span id="songArtist">—</span></span>
+            </a>
+            <a class="cta" href="#historia">
+              <svg class="cta__frame" viewBox="0 0 220 50" preserveAspectRatio="none" aria-hidden="true">
+                <path class="cta__body" d="M220 42L212.932 50H0V0H220V42Z"/>
+                <path class="cta__flood" d="M220 42L212.932 50H0V0H220V42Z"/>
+                <path class="cta__brackets" d="M205 49.5H213L219.5 42V36M212 0.5H219.5V7M8 0.5H0.5V7M7.5 49.5H0.5V42.5"/>
+              </svg>
+              <span class="cta__label">nuestra historia</span>
+              <svg class="cta__arrow" viewBox="0 0 13.7071 10.7071" aria-hidden="true"><path d="M0 5.35355H13M8 10.3536L13 5.35355L8 0.353553"/></svg>
+            </a>
+            <p class="hero__scroll"><span>baja</span><span class="hero__scroll-line" aria-hidden="true"></span></p>
+          </div>
+        </section>
+      </div>
+      <div class="stack__shade" aria-hidden="true"></div>
+    </div>
+
+    <!-- ░░ 2 · NUESTRO UNIVERSO (constelación) ░░ -->
+    <div class="stack__layer" data-pin>
+      <div class="stack__inner">
+        <section class="universe" id="numeros" aria-labelledby="universe-title">
+          <div class="universe__stage" id="uStage">
+            <canvas class="universe__stars" id="stars" aria-hidden="true"></canvas>
+            <canvas class="universe__trace" id="trace" aria-hidden="true"></canvas>
+            <div class="universe__labels" id="uLabels" aria-hidden="true"></div>
+          </div>
+          <canvas class="vichy" data-vichy="light" aria-hidden="true"></canvas>
+
+          <div class="universe__copy">
+            <div>
+              <h2 class="universe__title" id="universe-title">
+                <span data-split="words" data-stagger="110" data-delay="0">nuestro</span>
+                <span data-split="words" data-stagger="110" data-delay="130">universo<i class="dot">.</i></span>
+              </h2>
+              <span class="rule" data-grow="260"></span>
+              <p class="universe__intro" data-split="words" data-stagger="34" data-delay="350">En algún universo tú eres la luna y yo el sol. En este, somos un corazón dibujado con estrellas.</p>
+            </div>
+
+            <div class="plate" data-rise="260">
+              <svg class="plate__frame" viewBox="0 0 300 96" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M0.5 0.5H299.5V86L290 95.5H0.5Z"/>
+                <line x1="88" y1="0" x2="88" y2="96"/>
+              </svg>
+              <div class="plate__badge">
+                <svg class="globe" viewBox="0 0 37 37" aria-hidden="true">
+                  <circle cx="18.5" cy="18.5" r="17.5"/>
+                  <ellipse id="meridian" cx="18.5" cy="18.5" rx="17.5" ry="17.5"/>
+                  <line x1="1" y1="18.5" x2="36" y2="18.5"/>
+                </svg>
+                <p><span>M&amp;M</span> <b>/ 2026</b></p>
+              </div>
+              <dl class="plate__stats" id="plateStats"></dl>
+            </div>
+          </div>
+        </section>
+      </div>
+      <div class="stack__shade" aria-hidden="true"></div>
+    </div>
+
+    <!-- ░░ 3 · LA HISTORIA ░░ -->
+    <section class="story" id="historia" aria-labelledby="story-title">
+      <canvas class="vichy vichy--top" data-vichy="dark" aria-hidden="true"></canvas>
+      <div class="story__wrap" id="storyWrap">
+        <div class="rail" id="rail" aria-hidden="true">
+          <svg id="railSvg" preserveAspectRatio="none">
+            <line class="rail__solid" x1="8" x2="8" y1="0" y2="98"/>
+            <line class="rail__dash" x1="8" x2="8" y1="102" y2="200"/>
+            <rect class="rail__thread" x="7.5" y="0" width="1" height="0"/>
+            <path class="rail__star" d="M0 -9 L2.6 -2.6 L9 0 L2.6 2.6 L0 9 L-2.6 2.6 L-9 0 L-2.6 -2.6 Z"/>
+          </svg>
+        </div>
+        <h2 class="story__title" id="story-title">
+          <span data-split="words" data-stagger="110" data-delay="0">desde el</span>
+          <span data-split="words" data-stagger="110" data-delay="130">27 de marzo<i class="dot">.</i></span>
+        </h2>
+        <div id="rows"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ░░ 4 · LAS FRASES ░░ -->
+  <section class="quotes" id="frases" aria-labelledby="quotes-title">
+    <canvas class="vichy vichy--top" data-vichy="ink" aria-hidden="true"></canvas>
+    <canvas class="contours" data-contours="quotes" aria-hidden="true"></canvas>
+    <div class="quotes__head">
+      <h2 class="quotes__title" id="quotes-title">
+        <span data-split="words" data-stagger="110" data-delay="0">lo que</span>
+        <span data-split="words" data-stagger="110" data-delay="130">nos dijimos<i class="dot">.</i></span>
+      </h2>
+      <p class="quotes__intro" data-split="words" data-stagger="30" data-delay="350">Copiadas tal cual del chat, con su fecha. El sol es ella, la luna soy yo.</p>
+      <div class="filters" role="group" aria-label="Filtrar frases">
+        <button class="filter is-on" data-filter="todas">todas</button>
+        <button class="filter" data-filter="marti"><span class="ico ico--sun" aria-hidden="true"></span>martina</button>
+        <button class="filter" data-filter="mati"><span class="ico ico--moon" aria-hidden="true"></span>matías</button>
+      </div>
+    </div>
+    <ol class="quotes__list" id="quoteList"></ol>
+  </section>
+
+  <!-- ░░ 5 · LAS CANCIONES ░░ -->
+  <section class="songs" id="canciones" aria-labelledby="songs-title">
+    <canvas class="vichy vichy--top" data-vichy="light" aria-hidden="true"></canvas>
+    <canvas class="songs__stars" id="songStars" aria-hidden="true"></canvas>
+    <div class="songs__head">
+      <h2 class="songs__title" id="songs-title">
+        <span data-split="words" data-stagger="110" data-delay="0">nuestras</span>
+        <span data-split="words" data-stagger="110" data-delay="130">canciones<i class="dot">.</i></span>
+      </h2>
+      <p class="songs__intro" data-split="words" data-stagger="30" data-delay="350">Las que nos dedicamos, con su fecha y lo que dijimos al dedicarlas.</p>
+    </div>
+    <article class="playlist" id="playlist" data-rise="200"></article>
+    <ol class="tracks" id="tracks"></ol>
+  </section>
+
+  <!-- ░░ 6 · LAS FOTOS ░░ -->
+  <section class="photos" id="fotos" aria-labelledby="photos-title">
+    <div class="photos__head">
+      <h2 class="photos__title" id="photos-title">
+        <span data-split="words" data-stagger="110" data-delay="0">nuestros</span>
+        <span data-split="words" data-stagger="110" data-delay="130">momentos<i class="dot">.</i></span>
+      </h2>
+      <p class="photos__intro" data-split="words" data-stagger="30" data-delay="350">Haz clic en cualquiera para verla en grande. Las de la historia también se abren.</p>
+    </div>
+    <ul class="wall" id="wall"></ul>
+  </section>
+
+  <!-- ░░ 7 · FINAL ░░ -->
+  <section class="finale" id="final" aria-labelledby="finale-title">
+    <div class="finale__panel">
+      <canvas class="contours" data-contours="finale" aria-hidden="true"></canvas>
+      <p class="finale__logo" data-fade="120">M <span class="mast__dot" aria-hidden="true"></span> M</p>
+      <h2 class="finale__title" id="finale-title">
+        <span data-split="words" data-stagger="110" data-delay="0">tú, mi sol</span>
+        <span data-split="words" data-stagger="110" data-delay="130">yo, tu luna<i class="dot">.</i></span>
+      </h2>
+      <p class="finale__line" data-split="words" data-stagger="40" data-delay="420">Y aún quedan muchos universos por descubrir, pero lo importante es que juntos somos el eclipse perfecto.</p>
+      <nav class="finale__nav" aria-label="Secundaria">
+        <a href="#inicio" data-split="letters" data-stagger="22" data-delay="260">inicio</a>
+        <a href="#numeros" data-split="letters" data-stagger="22" data-delay="340">universo</a>
+        <a href="#historia" data-split="letters" data-stagger="22" data-delay="420">historia</a>
+        <a href="#frases" data-split="letters" data-stagger="22" data-delay="500">frases</a>
+        <a href="#canciones" data-split="letters" data-stagger="22" data-delay="580">canciones</a>
+        <a href="#fotos" data-split="letters" data-stagger="22" data-delay="660">fotos</a>
+      </nav>
+      <canvas class="finale__figure" id="finaleFig" aria-hidden="true"></canvas>
+      <p class="finale__copy" data-rise="640">© 2026 · hecho a mano por Matías, para Marti</p>
+      <a class="cta cta--ghost finale__cta" href="#inicio" data-rise="720">
+        <svg class="cta__frame" viewBox="0 0 220 50" preserveAspectRatio="none" aria-hidden="true">
+          <path class="cta__flood" d="M220 42L212.932 50H0V0H220V42Z"/>
+          <path class="cta__outline" d="M219.5 41.8L212.7 49.5H0.5V0.5H219.5V41.8Z"/>
+        </svg>
+        <span class="cta__label">volver arriba</span>
+        <svg class="cta__arrow cta__arrow--up" viewBox="0 0 13.7071 10.7071" aria-hidden="true"><path d="M0 5.35355H13M8 10.3536L13 5.35355L8 0.353553"/></svg>
+      </a>
+      <p class="finale__date" data-rise="800" id="todayLine">—</p>
+    </div>
+  </section>
+
+  <!-- Menú móvil -->
+  <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="Menú" hidden>
+    <div class="sheet__top">
+      <span class="mast__logo"><span class="mast__m">M</span><span class="mast__dot"></span><span class="mast__m">M</span></span>
+      <button class="sheet__close" id="sheetClose" aria-label="Cerrar menú"><span></span><span></span></button>
+    </div>
+    <nav class="sheet__nav">
+      <a href="#numeros">universo</a><a href="#historia">historia</a><a href="#frases">frases</a><a href="#canciones">canciones</a><a href="#fotos">fotos</a><a href="#final">el eclipse</a>
+    </nav>
+  </div>
+
+  <!-- Visor de fotos -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto" hidden>
+    <button class="lightbox__close" id="lbClose" aria-label="Cerrar"><span></span><span></span></button>
+    <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Foto anterior">←</button>
+    <figure class="lightbox__figure" id="lbFigure">
+      <figcaption><span id="lbText"></span><time id="lbDate"></time></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Foto siguiente">→</button>
+  </div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <clipPath id="plateClip" clipPathUnits="objectBoundingBox">
+        <path d="M 0.01915,0.00107H 0.98085C 0.98574,0.00107 0.99044,0.00300 0.99390,0.00642C 0.99736,0.00984 0.99930,0.01449 0.99930,0.01933V 0.88815C 0.99930,0.89299 0.99736,0.89763 0.99390,0.90105C 0.99044,0.90448 0.98574,0.90640 0.98085,0.90640H 0.64733C 0.63864,0.90640 0.63007,0.90834 0.62224,0.91206C 0.61442,0.91579 0.60754,0.92122 0.60212,0.92794L 0.56153,0.97830C 0.55635,0.98474 0.54976,0.98993 0.54227,0.99350C 0.53478,0.99707 0.52656,0.99892 0.51825,0.99892H 0.01915C 0.01426,0.99892 0.00956,0.99700 0.00610,0.99358C 0.00264,0.99016 0.00070,0.98551 0.00070,0.98067V 0.01933C 0.00070,0.01449 0.00264,0.00984 0.00610,0.00642C 0.00956,0.00300 0.01426,0.00107 0.01915,0.00107Z"/>
+      </clipPath>
+    </defs>
+  </svg>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
