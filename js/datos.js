@@ -226,7 +226,7 @@ export const HISTORIA = [
     texto: "Aparecí a las 7 de la mañana solo para estar contigo antes de clase. Ese día quedó dicho: el 11 de cada mes, siempre especial.",
   },
   {
-    fecha: "2026-09-12", frame: "lado", lado: "derecha", foto: "fotos/m-2026-09-12-141217.jpg",
+    fecha: "2026-11-15", frame: "lado", lado: "derecha", foto: "fotos/m-2026-09-12-141217.jpg",
     alt: "Martina",
     nota: "«eres como mi lugar seguro, mi hogar»",
   },
@@ -397,7 +397,7 @@ export const FOTOS = [
   { src: "fotos/2026-08-24-marti-bosque.jpg", fecha: "2026-08-24", texto: "entre pinos" },
   { src: "fotos/m-2026-08-24-222413.jpg", fecha: "2026-08-24", texto: "" },
   { src: "fotos/2026-08-29-playlist.jpg", fecha: "2026-08-29", texto: "TE AMO MARTINA ♡" },
-  { src: "fotos/m-2026-09-12-141217.jpg", fecha: "2026-09-12", texto: "" },
+  { src: "fotos/m-2026-09-12-141217.jpg", fecha: "2026-11-15", texto: "" },
   { src: "fotos/m-2026-09-12-144736.jpg", fecha: "2026-09-12", texto: "" },
   { src: "fotos/m-2026-09-12-165806.jpg", fecha: "2026-09-12", texto: "" },
   { src: "fotos/m-2026-09-12-170107.jpg", fecha: "2026-09-12", texto: "" },
