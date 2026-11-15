@@ -23,7 +23,7 @@ export const PAREJA = {
 
 // Los números salen del chat (27 mar – 14 nov 2026).
 export const NUMEROS = [
-  { cifra: "289.676", texto: "mensajes" },
+  { cifra: "290.081", texto: "mensajes" },
   { cifra: "14.404", texto: "te amo" },
   { cifra: "229", texto: "días hablando" },
 ];
@@ -226,7 +226,7 @@ export const HISTORIA = [
     texto: "Aparecí a las 7 de la mañana solo para estar contigo antes de clase. Ese día quedó dicho: el 11 de cada mes, siempre especial.",
   },
   {
-    fecha: "2026-11-15", frame: "lado", lado: "derecha", foto: "fotos/m-2026-09-12-141217.jpg",
+    fecha: "2026-09-12", frame: "lado", lado: "derecha", foto: "fotos/m-2026-09-12-141217.jpg",
     alt: "Martina",
     nota: "«eres como mi lugar seguro, mi hogar»",
   },
@@ -257,6 +257,39 @@ export const HISTORIA = [
     alt: "Un teclado de piano con notas musicales",
     titulo: "El piano.",
     texto: "Me mandaste cómo tocabas el piano, nota a nota. «Ya te está saliendo súper bien». Y nos dio la madrugada hablando, como siempre.",
+  },
+  {
+    fecha: "2026-11-14", frame: "lado", lado: "derecha", arte: "pergamino",
+    alt: "Un pergamino con «amor cortès», una corona y un sello con un corazón",
+    nota: "me explicaste el amor cortés: el trovador y su dama. «Por mí, que me ocupes las 24/7»",
+  },
+  {
+    fecha: "2026-11-14", frame: "centro", arte: "navidad",
+    alt: "Un árbol de Navidad con una estrella y dos regalos",
+    titulo: "Nuestra primera Navidad.",
+    texto: "Mis padres fueron a buscar un pino de verdad y me dijiste: «Es la primera Navidad que paso contigo. Vas a estar por primera vez en mi cumple». Y nuestro primer año nuevo juntos.",
+  },
+  {
+    fecha: "2026-11-15", frame: "lado", lado: "izquierda", arte: "girasol",
+    alt: "Un girasol",
+    nota: "«soy un girasol» · «mi girasol favorito»",
+  },
+  {
+    fecha: "2026-11-15", frame: "centro", arte: "hijos",
+    alt: "Un sol y una luna juntos, con tres estrellas: Kai, Siena y Elio",
+    titulo: "«Déjame tener hijos tuyos, ¿va?»",
+    texto: "A las dos y media de la madrugada. «Claro que sí»: Kai, Siena, Elio. Y si salen gemelas, Sol y Luna. «Mi sol eres tú».",
+  },
+  {
+    fecha: "2026-11-15", frame: "lado", lado: "derecha", arte: "cerezo",
+    alt: "Una rama de flores de cerezo y el sol de la hora dorada",
+    nota: "flor de cerezo, una cierva, la nostalgia, San Sebastián y la hora dorada. «Tan tú»",
+  },
+  {
+    fecha: "2026-11-15", frame: "centro", arte: "web",
+    alt: "Un portátil con un pequeño eclipse en la pantalla y la hora 04:30",
+    titulo: "Esta página.",
+    texto: "Me quedé hasta las 4:30 terminándola. Te pedí que la vieras en el ordenador, con calma, y me dijiste que te daban nervios. Esto es lo que estaba haciendo.",
   },
 ];
 
@@ -308,6 +341,9 @@ export const FRASES = [
   { quien: "mati", fecha: "2026-10-27", texto: "Aunque esté haciendo cualquier cosa, siempre acabo pensando en ti. Siempre te llevo conmigo aunque no estemos juntitos." },
   { quien: "marti", fecha: "2026-10-29", texto: "T'estimo. Molt molt." },
   { quien: "marti", fecha: "2026-10-31", texto: "Te amo mucho, Matías. Nunca lo olvides." },
+  { quien: "mati", fecha: "2026-11-14", texto: "Me encanta pasar tiempo contigo. Por mí, que me ocupes las 24/7, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday, every hour, every minute." },
+  { quien: "marti", fecha: "2026-11-15", texto: "Descansa. Que los ángeles te cubran la cabeza de lindas flores que aporten bonitos sueños.", grande: true },
+  { quien: "mati", fecha: "2026-11-15", texto: "Mi sol eres tú." },
 ];
 
 // Las fotos del muro, por orden. texto = lo que se escribe a mano debajo.
@@ -361,7 +397,7 @@ export const FOTOS = [
   { src: "fotos/2026-08-24-marti-bosque.jpg", fecha: "2026-08-24", texto: "entre pinos" },
   { src: "fotos/m-2026-08-24-222413.jpg", fecha: "2026-08-24", texto: "" },
   { src: "fotos/2026-08-29-playlist.jpg", fecha: "2026-08-29", texto: "TE AMO MARTINA ♡" },
-  { src: "fotos/m-2026-09-12-141217.jpg", fecha: "2026-11-15", texto: "" },
+  { src: "fotos/m-2026-09-12-141217.jpg", fecha: "2026-09-12", texto: "" },
   { src: "fotos/m-2026-09-12-144736.jpg", fecha: "2026-09-12", texto: "" },
   { src: "fotos/m-2026-09-12-165806.jpg", fecha: "2026-09-12", texto: "" },
   { src: "fotos/m-2026-09-12-170107.jpg", fecha: "2026-09-12", texto: "" },

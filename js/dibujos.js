@@ -203,4 +203,73 @@ export const DIBUJOS = {
       <path d="M470 90 V40 L520 30 V80" stroke="${G}" stroke-width="5"/><circle cx="460" cy="92" r="12" fill="${G}"/><circle cx="510" cy="82" r="12" fill="${G}"/>
       ${hand(355, 402, "«ya te está saliendo súper bien»", 32, C)}`);
   },
+  pergamino: () => svg(`
+    <path d="M300 64 l12 -26 l14 18 l14 -24 l14 24 l14 -18 l12 26 Z" fill="${G}"/>
+    <rect x="225" y="92" width="260" height="270" fill="${C}"/>
+    <rect x="212" y="80" width="286" height="26" rx="13" fill="#e9dfca" stroke="${M}" stroke-width="2"/>
+    <rect x="212" y="350" width="286" height="26" rx="13" fill="#e9dfca" stroke="${M}" stroke-width="2"/>
+    ${hand(355, 150, "amor cortès", 38, K)}
+    ${[180, 210, 240, 270, 300].map((y, i) => `<path d="M255 ${y} H${430 - ((i * 37) % 90)}" stroke="#8f93a8" stroke-width="3"/>`).join("")}
+    <circle cx="440" cy="312" r="26" fill="${R}"/>${heart(440, 312, 10, C)}
+    <path d="M560 70 C 600 110, 590 190, 520 250 L512 244 C 560 180, 570 120, 560 70 Z" fill="${C}" stroke="${G}" stroke-width="2"/>
+    <path d="M516 248 L496 290" stroke="${C}" stroke-width="3"/>
+    ${sparkles([[130, 120, 6], [600, 360, 5], [150, 330, 4]])}`),
+
+  navidad: () => svg(`
+    <path d="M355 120 L262 222 H448 Z M355 168 L240 286 H470 Z M355 226 L214 348 H496 Z" fill="#3f7a52" stroke="#5e9c6c" stroke-width="3"/>
+    <rect x="340" y="348" width="30" height="34" fill="#8a5a2b"/>
+    <path d="M285 214 C 330 236, 380 236, 425 212 M262 278 C 320 302, 390 302, 450 276 M238 340 C 310 364, 400 364, 474 338" stroke="${G}" stroke-width="3" stroke-dasharray="2 9"/>
+    ${[[318, 196, R], [392, 200, C], [290, 262, G], [362, 270, R], [430, 258, C], [262, 326, C], [330, 334, G], [404, 330, R], [462, 322, G]].map(([x, y, c]) => `<circle cx="${x}" cy="${y}" r="9" fill="${c}"/>`).join("")}
+    ${star(355, 104, 26)}
+    <rect x="150" y="320" width="64" height="58" fill="${R}"/><path d="M182 320 V378 M150 346 H214" stroke="${C}" stroke-width="6"/>
+    <rect x="510" y="334" width="52" height="44" fill="${G}"/><path d="M536 334 V378" stroke="${R}" stroke-width="6"/>
+    ${sparkles([[130, 110, 6], [590, 130, 7], [620, 260, 4], [100, 240, 4]])}
+    ${hand(355, 418, "primera Navidad · primer año nuevo", 32, C)}`),
+
+  girasol: () => {
+    const petalos = Array.from({ length: 18 }, (_, i) => `<ellipse cx="355" cy="${180 - 78}" rx="17" ry="44" fill="${i % 2 ? G : A}" transform="rotate(${i * 20} 355 180)"/>`).join("");
+    const pipas = Array.from({ length: 28 }, (_, i) => { const a = i * 2.4, r = 5 * Math.sqrt(i); return `<circle cx="${(355 + Math.cos(a) * r * 1.6).toFixed(1)}" cy="${(180 + Math.sin(a) * r * 1.6).toFixed(1)}" r="3" fill="#2e1b0c"/>`; }).join("");
+    return svg(`
+      <path d="M355 240 C 350 300, 362 340, 355 372" stroke="#5e9c6c" stroke-width="9"/>
+      <path d="M357 318 C 400 290, 440 300, 452 318 C 420 334, 390 332, 357 318 Z" fill="#3f7a52"/>
+      ${petalos}<circle cx="355" cy="180" r="50" fill="#5a3a1a"/>${pipas}
+      ${heart(520, 120, 14)}${sparkles([[180, 110, 6], [560, 300, 5]])}
+      ${hand(355, 412, "mi girasol favorito", 34, C)}`);
+  },
+
+  hijos: () => {
+    const rayos = Array.from({ length: 12 }, (_, i) => { const a = (i / 12) * Math.PI * 2; return `<path d="M${(270 + Math.cos(a) * 76).toFixed(1)} ${(170 + Math.sin(a) * 76).toFixed(1)} L${(270 + Math.cos(a) * 98).toFixed(1)} ${(170 + Math.sin(a) * 98).toFixed(1)}" stroke="${G}" stroke-width="6"/>`; }).join("");
+    const nombres = [["Kai", 215, 296], ["Siena", 355, 312], ["Elio", 495, 296]];
+    return svg(`
+      ${rayos}<circle cx="270" cy="170" r="64" fill="${A}" stroke="${G}" stroke-width="4"/>
+      <circle cx="445" cy="170" r="62" fill="${M}"/><circle cx="472" cy="152" r="56" fill="#0b1236"/>
+      ${heart(357, 104, 13)}
+      ${nombres.map(([n, x, y]) => `${star(x, y, 15)}${hand(x, y + 44, n, 32, C)}`).join("")}
+      ${hand(355, 418, "y si salen gemelas: Sol y Luna", 32, G)}`);
+  },
+
+  cerezo: () => {
+    const flor = (x, y, s) => Array.from({ length: 5 }, (_, i) => `<circle cx="${(x + Math.cos((i / 5) * Math.PI * 2) * s).toFixed(1)}" cy="${(y + Math.sin((i / 5) * Math.PI * 2) * s).toFixed(1)}" r="${s * 0.85}" fill="#f4a7c0"/>`).join("") + `<circle cx="${x}" cy="${y}" r="${s * 0.45}" fill="${R}"/>`;
+    return svg(`
+      ${Array.from({ length: 9 }, (_, i) => { const a = Math.PI + ((i + 0.5) / 9) * Math.PI; return `<path d="M${(355 + Math.cos(a) * 112).toFixed(1)} ${(320 + Math.sin(a) * 112).toFixed(1)} L${(355 + Math.cos(a) * 140).toFixed(1)} ${(320 + Math.sin(a) * 140).toFixed(1)}" stroke="${G}" stroke-width="5"/>`; }).join("")}
+      <circle cx="355" cy="320" r="92" fill="${A}"/>
+      <rect x="0" y="320" width="710" height="143" fill="#0b1236"/>
+      <path d="M90 322 H620" stroke="${G}" stroke-width="3"/>
+      ${[340, 356, 372].map((y, i) => `<path d="M${240 + i * 20} ${y} H${470 - i * 20}" stroke="${G}" stroke-width="2" opacity="${0.6 - i * 0.15}"/>`).join("")}
+      <path d="M40 60 C 140 90, 220 80, 300 130 M150 82 C 170 120, 200 140, 230 150 M230 98 C 250 70, 280 60, 310 64" stroke="#7a4a2a" stroke-width="7"/>
+      ${flor(300, 130, 12)}${flor(230, 150, 10)}${flor(310, 64, 11)}${flor(190, 86, 9)}${flor(120, 72, 8)}${flor(262, 108, 8)}
+      ${hand(355, 412, "hora dorada", 36, C)}`);
+  },
+
+  web: () => svg(`
+    <rect x="205" y="84" width="300" height="206" rx="12" fill="${N}" stroke="${C}" stroke-width="4"/>
+    <rect x="222" y="100" width="266" height="172" rx="4" fill="#0b1236"/>
+    <circle cx="340" cy="176" r="46" fill="${A}" opacity="0.25"/>
+    <circle cx="340" cy="176" r="34" fill="${A}"/><circle cx="364" cy="170" r="32" fill="${K}" stroke="${M}" stroke-width="2"/>
+    ${hand(355, 252, "nuestro universo", 24, C)}
+    ${sparkles([[250, 120, 4], [460, 130, 5], [450, 240, 3]])}
+    <path d="M170 300 H540 L566 324 H144 Z" fill="${M}"/>
+    <text x="600" y="130" text-anchor="middle" font-family="Courier Prime, monospace" font-weight="700" font-size="34" fill="${G}">04:30</text>
+    <circle cx="600" cy="74" r="18" fill="${M}"/><circle cx="610" cy="66" r="16" fill="#0b1236"/>
+    ${hand(355, 392, "para verla en el ordenador, con calma", 30, C)}`),
 };
