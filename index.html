@@ -181,13 +181,14 @@
   <!-- ░░ 4 · LAS FRASES ░░ -->
   <section class="quotes" id="frases" aria-labelledby="quotes-title">
     <canvas class="vichy vichy--top" data-vichy="ink" aria-hidden="true"></canvas>
-    <canvas class="contours" data-contours="quotes" aria-hidden="true"></canvas>
+    <div class="quotes__bg" aria-hidden="true"><canvas class="contours contours--sticky" data-contours="quotes"></canvas></div>
     <div class="quotes__head">
       <h2 class="quotes__title" id="quotes-title">
         <span data-split="words" data-stagger="110" data-delay="0">lo que</span>
         <span data-split="words" data-stagger="110" data-delay="130">nos dijimos<i class="dot">.</i></span>
       </h2>
       <p class="quotes__intro" data-split="words" data-stagger="30" data-delay="350">Copiadas tal cual del chat, con su fecha. El sol es ella, la luna soy yo.</p>
+      <p class="quotes__count" id="quoteCount" data-rise="500"></p>
       <div class="filters" role="group" aria-label="Filtrar frases">
         <button class="filter is-on" data-filter="todas">todas</button>
         <button class="filter" data-filter="marti"><span class="ico ico--sun" aria-hidden="true"></span>martina</button>

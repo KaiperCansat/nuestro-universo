@@ -196,22 +196,45 @@ $$('canvas[data-arte="eclipse"]').forEach((c, i) => {
 });
 
 // Las frases
+// Una conversación de notas de papel: ella a la izquierda (sol), yo a la derecha (luna),
+// con el mes como separador. Cada nota entra entera (una sola transición, nada de palabra a palabra).
 const list = $("#quoteList");
+const GIRO = [-1.1, 0.7, -0.4, 1, -0.8, 0.5, -1.3, 0.9];
+let mesActual = "";
 FRASES.forEach((q, i) => {
+  const mes = q.fecha.slice(0, 7);
+  if (mes !== mesActual) {
+    mesActual = mes;
+    const sep = document.createElement("li");
+    sep.className = "qmonth";
+    sep.dataset.mes = mes;
+    sep.setAttribute("aria-hidden", "true");
+    sep.innerHTML = `<span>${MESES_LARGOS[Number(mes.slice(5)) - 1]} ${mes.slice(0, 4)}</span>`;
+    list.append(sep);
+  }
   const li = document.createElement("li");
-  li.className = `quote quote--${q.quien}`;
+  li.className = `quote quote--${q.quien}${q.grande ? " quote--grande" : ""}`;
   li.dataset.quien = q.quien;
+  li.dataset.mes = mes;
+  li.dataset.rise = "0";
+  li.style.setProperty("--r", `${GIRO[i % GIRO.length]}deg`);
   const nombre = q.quien === "marti" ? PAREJA.ella : PAREJA.el;
   li.innerHTML = `
-    <span class="quote__num">${String(i + 1).padStart(2, "0")} / ${String(FRASES.length).padStart(2, "0")}</span>
-    <blockquote class="quote__text" data-split="words" data-stagger="26">${q.texto}</blockquote>
-    <p class="quote__by" data-rise="300"><span class="ico ico--${q.quien === "marti" ? "sun" : "moon"}" aria-hidden="true"></span><span class="who">— ${nombre}</span><time datetime="${q.fecha}">${larga(q.fecha)}</time></p>`;
+    <blockquote class="quote__text">${q.texto}</blockquote>
+    <p class="quote__by"><span class="ico ico--${q.quien === "marti" ? "sun" : "moon"}" aria-hidden="true"></span><span class="who">${nombre}</span><time datetime="${q.fecha}">${corta(q.fecha)}</time></p>`;
   list.append(li);
 });
+const nEl = FRASES.filter((q) => q.quien === "marti").length;
+$("#quoteCount").textContent = `${FRASES.length} frases · ${nEl} tuyas · ${FRASES.length - nEl} mías`;
 $$(".filter").forEach((b) => b.addEventListener("click", () => {
   $$(".filter").forEach((x) => x.classList.toggle("is-on", x === b));
   const f = b.dataset.filter;
-  $$(".quote").forEach((q) => { q.hidden = f !== "todas" && q.dataset.quien !== f; });
+  const conFrase = new Set();
+  $$(".quote").forEach((q) => {
+    q.hidden = f !== "todas" && q.dataset.quien !== f;
+    if (!q.hidden) { conFrase.add(q.dataset.mes); q.classList.add("is-in"); }
+  });
+  $$(".qmonth").forEach((m) => { m.hidden = !conFrase.has(m.dataset.mes); });
   lenis?.resize?.();
 }));
 
@@ -467,7 +490,7 @@ $$("[data-contours]").forEach((canvas) => {
   const start = performance.now();
   let w = 0, h = 0;
   const size = () => {
-    const r = Math.min(devicePixelRatio || 1, 2);
+    const r = Math.min(devicePixelRatio || 1, 1.5);
     w = canvas.clientWidth; h = canvas.clientHeight;
     canvas.width = Math.round(w * r); canvas.height = Math.round(h * r);
     ctx.setTransform(r, 0, 0, r, 0, 0);
@@ -515,7 +538,7 @@ $$("[data-contours]").forEach((canvas) => {
       }
     ctx.stroke(); ctx.globalAlpha = 1;
   };
-  subscribe(draw, REDUCED ? 1e9 : 24);
+  subscribe(draw, REDUCED ? 1e9 : 33);
   if (REDUCED) requestAnimationFrame(draw);
 });
 

@@ -381,7 +381,7 @@ ul, ol { list-style: none; }
 
 /* ── 4 · LAS FRASES ────────────────────────────────────────── */
 .quotes {
-  position: relative; isolation: isolate; overflow: hidden;
+  position: relative; isolation: isolate; overflow: clip;
   background: var(--background);
   padding: clamp(9rem, 16vw, 13rem) var(--gutter) 8rem;
   display: grid; grid-template-columns: minmax(0, 22rem) 1fr; gap: 3rem 5rem;
@@ -393,24 +393,57 @@ ul, ol { list-style: none; }
 .filter { display: inline-flex; align-items: center; gap: 0.45rem; padding: 0.55rem 0.85rem; text-transform: uppercase; font-size: 0.8rem; line-height: 1; border: 1px solid var(--foreground); transition: background 150ms var(--ease-entrance), color 150ms; }
 .filter:hover { background: var(--paper); }
 .filter.is-on { background: var(--foreground); color: var(--background); }
-.quotes__list { display: flex; flex-direction: column; gap: clamp(3.5rem, 7vw, 6rem); counter-reset: q; }
-.quote { position: relative; max-width: 46rem; transition: opacity 500ms var(--ease-entrance); }
-.quote[hidden] { display: none; }
-.quote:nth-child(even) { margin-left: auto; text-align: right; }
-.quote:nth-child(even) .quote__text { justify-content: flex-end; }
-.quote:nth-child(even) .quote__by { justify-content: flex-end; }
-.quote__num { display: block; font-size: 0.75rem; color: var(--foreground-muted); margin-bottom: 0.9rem; text-transform: uppercase; }
-.quote__text {
-  font-family: var(--font-display); font-style: italic; font-weight: 500;
-  font-size: clamp(1.7rem, 3.2vw, 2.9rem); line-height: 1.12; letter-spacing: -0.01em;
-  column-gap: 0.24em;
+.quotes__count { margin-top: 1.4rem; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--foreground-muted); }
+/* las líneas de fondo ocupan solo la pantalla y viajan con ella (antes medían toda la sección) */
+.quotes__bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+.contours--sticky { position: sticky; top: 0; inset: auto; display: block; width: 100%; height: 100vh; height: 100svh; }
+
+.quotes__list { display: flex; flex-direction: column; gap: 1.4rem; padding-top: 0.5rem; }
+.qmonth { align-self: stretch; display: flex; align-items: center; gap: 1rem; margin: 2.2rem 0 0.4rem; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.14em; color: var(--foreground-muted); }
+.qmonth:first-child { margin-top: 0; }
+.qmonth::before, .qmonth::after { content: ""; flex: 1; height: 1px; background: var(--raw-cream-300); }
+.qmonth[hidden], .quote[hidden] { display: none; }
+
+.quote {
+  position: relative; max-width: min(33rem, 86%);
+  padding: 1.7rem 1.8rem 1.15rem;
+  border-radius: 3px;
+  rotate: var(--r, 0deg);
+  box-shadow: 0 1px 0 rgb(23 21 42 / 0.05), 0 18px 34px -22px rgb(23 21 42 / 0.45);
+  transition: opacity 800ms var(--ease-entrance), transform 800ms var(--ease-entrance), rotate 350ms var(--ease-entrance), box-shadow 350ms;
 }
-.quote--mati .quote__text { font-style: normal; font-weight: 700; }
-.quote__by { display: flex; align-items: center; gap: 0.55rem; margin-top: 1.1rem; }
-.quote__by .who { font-family: var(--font-hand); font-size: 1.7rem; line-height: 1; }
-.quote__by time { font-size: 0.78rem; text-transform: uppercase; color: var(--foreground-muted); }
+@media (hover: hover) { .quote:hover { rotate: 0deg; box-shadow: 0 1px 0 rgb(23 21 42 / 0.05), 0 26px 40px -22px rgb(23 21 42 / 0.5); } }
+/* la cinta que la sujeta */
+.quote::before { content: ""; position: absolute; top: -0.65rem; width: 4.8rem; height: 1.35rem; rotate: -3deg; opacity: 0.9; }
+/* comillas grandes de adorno */
+.quote::after { content: "\201C"; position: absolute; top: 0.1rem; right: 1rem; font-family: var(--font-display); font-size: 4.6rem; line-height: 1; opacity: 0.22; pointer-events: none; }
+
+.quote--marti { align-self: flex-start; background: var(--paper); color: var(--foreground); border: 1px solid var(--raw-cream-300); }
+.quote--marti::before {
+  left: 1.5rem;
+  background:
+    repeating-linear-gradient(90deg, rgb(200 16 46 / 0.32) 0 6px, transparent 6px 12px),
+    repeating-linear-gradient(0deg, rgb(200 16 46 / 0.32) 0 6px, rgb(255 255 255 / 0.55) 6px 12px);
+}
+.quote--marti::after { color: var(--accent-ink); }
+.quote--mati { align-self: flex-end; background: var(--night); color: var(--on-night); }
+.quote--mati::before { right: 1.5rem; rotate: 3deg; background: rgb(255 210 122 / 0.55); }
+.quote--mati::after { color: var(--accent-soft); right: auto; left: 1rem; }
+
+.quote__text { margin: 0; padding-right: 1.6rem; font-family: var(--font-display); font-size: clamp(1.2rem, 1.75vw, 1.55rem); line-height: 1.28; letter-spacing: -0.005em; text-wrap: pretty; }
+.quote--marti .quote__text { font-style: italic; font-weight: 500; }
+.quote--mati .quote__text { font-weight: 600; padding-right: 0; padding-left: 1.7rem; }
+.quote--grande { max-width: min(40rem, 94%); padding: 2.2rem 2.3rem 1.3rem; }
+.quote--grande .quote__text { font-size: clamp(1.55rem, 2.6vw, 2.25rem); line-height: 1.16; }
+.quote--grande::after { font-size: 6.5rem; }
+
+.quote__by { display: flex; align-items: center; gap: 0.55rem; margin-top: 1rem; padding-top: 0.7rem; border-top: 1px dashed color-mix(in srgb, currentColor 22%, transparent); }
+.quote__by .who { font-family: var(--font-hand); font-size: 1.55rem; line-height: 1; }
+.quote__by time { margin-left: auto; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; }
 .quote--marti .who { color: var(--accent-ink); }
-.quote--mati .who { color: var(--night-line); }
+.quote--marti time { color: var(--foreground-muted); }
+.quote--mati .who { color: var(--accent-soft); }
+.quote--mati time { color: var(--on-night-muted); }
 
 /* ── 5 · LAS FOTOS ─────────────────────────────────────────── */
 .photos { position: relative; background: var(--paper); padding: 7rem var(--gutter) 9rem; }
@@ -515,8 +548,8 @@ ul, ol { list-style: none; }
   .row:nth-child(even) .year { align-self: flex-end; }
   .copy { position: relative; top: auto; left: auto; right: auto; transform: none; width: 100%; max-width: 26rem; }
   .story.is-hovering .row:not(.is-hover) { opacity: 1; }
-  .quote:nth-child(even) { text-align: left; margin-left: 0; }
-  .quote:nth-child(even) .quote__text, .quote:nth-child(even) .quote__by { justify-content: flex-start; }
+  .quote { max-width: 92%; padding: 1.4rem 1.3rem 1rem; }
+  .quote--grande { max-width: 96%; padding: 1.7rem 1.5rem 1.1rem; }
   .wall { columns: 2 9rem; column-gap: 1rem; }
   .wall .polaroid figcaption { font-size: 1.1rem; }
   .plate { align-self: stretch; width: auto; max-width: 21rem; }
