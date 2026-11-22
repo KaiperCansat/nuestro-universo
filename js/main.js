@@ -339,12 +339,13 @@ function tarjetaResena(r, { fija = false, delante = false } = {}) {
 }
 function pintarNota() {
   const n = todasResenas.length;
-  const media = n ? todasResenas.reduce((a, r) => a + r.estrellas, 0) / n : 5;
-  $("#revAvg").textContent = media.toFixed(1).replace(".", ",");
-  $("#revAvgStars").textContent = estrellasTxt(Math.round(media));
-  $("#revCount").textContent = `${n} ${n === 1 ? "reseña" : "reseñas"}`;
+  const media = n ? todasResenas.reduce((a, r) => a + r.estrellas, 0) / n : 0;
+  $("#revAvg").textContent = n ? media.toFixed(1).replace(".", ",") : "–";
+  $("#revAvgStars").textContent = n ? estrellasTxt(Math.round(media)) : estrellasTxt(0);
+  $("#revCount").textContent = n ? `${n} ${n === 1 ? "reseña" : "reseñas"}` : "aún no hay reseñas, ¡sé la primera persona!";
 }
 RESENAS.forEach((r) => tarjetaResena(r, { fija: true }));
+pintarNota();
 const leerLocales = () => { try { return JSON.parse(localStorage.getItem(REV_LOCAL) || "[]"); } catch { return []; } };
 const cabeceras = () => {
   const h = { apikey: RESENAS_GUARDADO.clave, "Content-Type": "application/json" };
