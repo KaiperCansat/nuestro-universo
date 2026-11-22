@@ -449,15 +449,7 @@ export const PORTADA = [
 
 // Las reseñas. Las primeras son de Martina, tal cual las escribió el día que vio la página.
 // respuesta = lo que le contesté (opcional).
-export const RESENAS = [
-  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "Me gusta demasiado. Muchísimas gracias.", respuesta: "Gracias a ti, por estar a mi lado." },
-  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "Me están dando ganas de llorar.", respuesta: "No llores." },
-  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "La hora dorada. Esa foto me define." },
-  { nombre: "Martina", fecha: "2026-11-15", estrellas: 4, texto: "Yo te dediqué el álbum entero de Damiano. Y tú no. Buum." },
-  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "No eran corazones, tonto. ¡Eran cerezas!", respuesta: "Real. Las 4 a. m. me afectaron. (Ya está arreglado)." },
-  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "Odio los finales. ¿Por qué todo tiene que acabarse?", respuesta: "Tranquila, lo seguiré actualizando con el tiempo. Nuevos recuerdos, nuevas partes." },
-  { nombre: "Martina", fecha: "2026-11-15", estrellas: 5, texto: "Love you so much.", respuesta: "I love you 3 thousand." },
-];
+export const RESENAS = [];
 
 // Dónde se guardan las reseñas que escribe la gente (Supabase, gratis).
 // Mientras esté vacío, cada reseña se guarda solo en el móvil u ordenador de quien la escribe.
