@@ -247,6 +247,56 @@ export const HISTORIA = [
     alt: "Una hoja: 10 cosas que odio sobre ti",
     nota: "«odio que tantas canciones me recuerden a ti»",
   },
+  {
+    fecha: "2026-11-13", frame: "centro", arte: "piano",
+    alt: "Un teclado de piano con notas musicales",
+    titulo: "El piano.",
+    texto: "Me mandaste cómo tocabas el piano, nota a nota. «Ya te está saliendo súper bien». Y nos dio la madrugada hablando, como siempre.",
+  },
+  {
+    fecha: "2026-11-14", frame: "lado", lado: "derecha", arte: "pergamino",
+    alt: "Un pergamino con «amor cortès», una corona y un sello con un corazón",
+    nota: "me explicaste el amor cortés: el trovador y su dama. «Por mí, que me ocupes las 24/7»",
+  },
+  {
+    fecha: "2026-11-14", frame: "centro", arte: "navidad",
+    alt: "Un árbol de Navidad con una estrella y dos regalos",
+    titulo: "Nuestra primera Navidad.",
+    texto: "Mis padres fueron a buscar un pino de verdad y me dijiste: «Es la primera Navidad que paso contigo. Vas a estar por primera vez en mi cumple». Y nuestro primer año nuevo juntos.",
+  },
+  {
+    fecha: "2026-11-15", frame: "lado", lado: "izquierda", arte: "girasol",
+    alt: "Un girasol",
+    nota: "«soy un girasol» · «mi girasol favorito»",
+  },
+  {
+    fecha: "2026-11-15", frame: "centro", arte: "hijos",
+    alt: "Un sol y una luna juntos, con tres estrellas: Kai, Siena y Elio",
+    titulo: "«Déjame tener hijos tuyos, ¿va?»",
+    texto: "A las dos y media de la madrugada. «Claro que sí»: Kai, Siena, Elio. Y si salen gemelas, Sol y Luna. «Mi sol eres tú».",
+  },
+  {
+    fecha: "2026-11-15", frame: "lado", lado: "derecha", arte: "cerezo",
+    alt: "Una rama de flores de cerezo y el sol de la hora dorada",
+    nota: "flor de cerezo, una cierva, la nostalgia, San Sebastián y la hora dorada. «Tan tú»",
+  },
+  {
+    fecha: "2026-11-15", frame: "centro", arte: "web",
+    alt: "Un portátil con un pequeño eclipse en la pantalla y la hora 04:30",
+    titulo: "Esta página.",
+    texto: "Me quedé hasta las 4:30 terminándola. Te pedí que la vieras en el ordenador, con calma, y me dijiste que te daban nervios. Esto es lo que estaba haciendo.",
+  },
+  {
+    fecha: "2026-11-15", frame: "lado", lado: "izquierda", arte: "musica",
+    alt: "Un pequeño sol entre notas musicales doradas y plateadas",
+    nota: "la viste entera y acabamos cantando «Niño», de Milo J, a dos voces",
+  },
+  {
+    fecha: "2026-11-15", frame: "centro", arte: "continuara",
+    alt: "Un camino de puntos: los dorados ya vividos y los que faltan, que se pierden entre las estrellas",
+    titulo: "«Odio los finales».",
+    texto: "«¿Por qué todo tiene que acabarse?», me dijiste al llegar aquí abajo. Por eso esta página no se acaba: la seguiré llenando con nuevos recuerdos, nuevas partes. Te amo.",
+  },
 ];
 
 // Las frases bonitas, tal cual las escribimos en el chat.
@@ -297,6 +347,11 @@ export const FRASES = [
   { quien: "mati", fecha: "2026-10-27", texto: "Aunque esté haciendo cualquier cosa, siempre acabo pensando en ti. Siempre te llevo conmigo aunque no estemos juntitos." },
   { quien: "marti", fecha: "2026-10-29", texto: "T'estimo. Molt molt." },
   { quien: "marti", fecha: "2026-10-31", texto: "Te amo mucho, Matías. Nunca lo olvides." },
+  { quien: "mati", fecha: "2026-11-14", texto: "Me encanta pasar tiempo contigo. Por mí, que me ocupes las 24/7, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday and Sunday, every hour, every minute." },
+  { quien: "marti", fecha: "2026-11-15", texto: "Descansa. Que los ángeles te cubran la cabeza de lindas flores que aporten bonitos sueños.", grande: true },
+  { quien: "mati", fecha: "2026-11-15", texto: "Mi sol eres tú." },
+  { quien: "marti", fecha: "2026-11-15", texto: "Me gusta demasiado. Muchísimas gracias." },
+  { quien: "mati", fecha: "2026-11-15", texto: "Sé que ya no suelo decirlo, pero te amo." },
 ];
 
 // Las fotos del muro, por orden. texto = lo que se escribe a mano debajo.
@@ -355,6 +410,7 @@ export const FOTOS = [
   { src: "fotos/m-2026-09-12-170107.jpg", fecha: "2026-09-12", texto: "" },
   { src: "fotos/m-2026-09-12-170443.jpg", fecha: "2026-09-12", texto: "" },
   { src: "fotos/m-2026-09-12-225518.jpg", fecha: "2026-09-12", texto: "" },
+  { src: "fotos/m-2026-09-12-141217.jpg", fecha: "2026-11-15", texto: "🫰" },
 ];
 
 // Las canciones. La playlist que te hice (se reproduce dentro de la web) y las que nos dedicamos.
